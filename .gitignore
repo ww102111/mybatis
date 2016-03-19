@@ -1,11 +1,6 @@
-/target/
-# eclipse ignore
-.settings/
-.project
-*.classpath
 .classpath
-/bin/
-
-# intellij idea
+.project
+.settings/
+target/
 *.iml
 .idea/
