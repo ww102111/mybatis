@@ -3,20 +3,47 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
+    <!--数据库连接信息-->
+    <properties resource="db/db.properties" />
+
+    <!--定义别名-->
+    <typeAliases>
+        <!--单个别名定义-->
+        <!--<typeAlias type="com.hooau.mybatis.domain.User" alias="user" />-->
+
+        <!--批量别名设置，默认为类名首字母小写（大写也行）-->
+        <package name="com.hooau.mybatis.domain" />
+    </typeAliases>
+    
     <environments default="development">
         <environment id="development">
             <!-- 事物管理器 -->
             <transactionManager type="JDBC" />
             <dataSource type="POOLED">
-                <property name="driver" value="com.mysql.jdbc.Driver" />
-                <property name="url" value="jdbc:mysql://localhost:3306/mybatis?charset=utf-8" />
-                <property name="username" value="root" />
-                <property name="password" value="root" />
+                <property name="driver" value="${jdbc.driver}" />
+                <property name="url" value="${jdbc.url}" />
+                <property name="username" value="${jdbc.username}" />
+                <property name="password" value="${jdbc.password}" />
             </dataSource>
         </environment>
     </environments>
 
     <mappers>
         <mapper resource="sqlMap/user.xml" />
+        <!--<mapper resource="mapper/UserMapper.xml" />-->
+
+        <!--
+            引入mapper三种方式
+            resource : mapper/userMapper.xml
+            url      : E:\development\install_dir\IntelliJ\projects\mybatis
+            class    : com.hooau.mybatis.mapper.UserMapper
+                       使用class方式要求配置文件和实体类同名且在同一目录下
+        -->
+
+        <!--单个配置-->
+        <mapper class="com.hooau.mybatis.mapper.UserMapper" />
+
+        <!--批量配置-->
+        <!--<package name="com.hooau.mybatis.mapper" />-->
     </mappers>
 </configuration>

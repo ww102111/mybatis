@@ -1,4 +1,4 @@
-package com.hooau.mybatis.jdbc;
+package com.hooau.mybatis.test.jdbc;
 
 import com.hooau.mybatis.domain.User;
 import org.apache.ibatis.io.Resources;

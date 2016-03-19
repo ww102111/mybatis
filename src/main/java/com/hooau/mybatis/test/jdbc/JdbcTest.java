@@ -1,4 +1,4 @@
-package com.hooau.mybatis.jdbc;
+package com.hooau.mybatis.test.jdbc;
 
 import java.sql.*;
 
