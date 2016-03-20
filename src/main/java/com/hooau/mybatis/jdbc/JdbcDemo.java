@@ -1,11 +1,11 @@
-package com.hooau.mybatis.test.jdbc;
+package com.hooau.mybatis.jdbc;
 
 import java.sql.*;
 
 /**
  * Created by hooau on 2016/3/19.
  */
-public class JdbcTest {
+public class JdbcDemo {
 
 
     public static void main(String[] args) {
