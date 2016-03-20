@@ -13,6 +13,7 @@
 
         <!--批量别名设置，默认为类名首字母小写（大写也行）-->
         <package name="com.hooau.mybatis.domain" />
+        <package name="com.hooau.mybatis.wrap" />
     </typeAliases>
     
     <environments default="development">
@@ -30,20 +31,22 @@
 
     <mappers>
         <mapper resource="sqlMap/user.xml" />
+
         <!--<mapper resource="mapper/UserMapper.xml" />-->
 
         <!--
             引入mapper三种方式
-            resource : mapper/userMapper.xml
+            resource : mapper/UserMapper.xml
             url      : E:\development\install_dir\IntelliJ\projects\mybatis
             class    : com.hooau.mybatis.mapper.UserMapper
                        使用class方式要求配置文件和实体类同名且在同一目录下
         -->
 
+
         <!--单个配置-->
-        <mapper class="com.hooau.mybatis.mapper.UserMapper" />
+        <!--<mapper class="com.hooau.mybatis.mapper.UserMapper" />-->
 
         <!--批量配置-->
-        <!--<package name="com.hooau.mybatis.mapper" />-->
+        <package name="com.hooau.mybatis.mapper" />
     </mappers>
 </configuration>

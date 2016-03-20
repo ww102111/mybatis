@@ -1,7 +1,9 @@
 package com.hooau.mybatis.test.mapper;
 
 import com.hooau.mybatis.domain.User;
+import com.hooau.mybatis.extend.UserExtend;
 import com.hooau.mybatis.mapper.UserMapper;
+import com.hooau.mybatis.wrap.UserWrap;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -16,7 +18,7 @@ import java.io.InputStream;
 import java.util.List;
 
 /**
- * Created by hooau on 2016/3/19.
+ *
  */
 public class TestMapper {
 
@@ -61,6 +63,51 @@ public class TestMapper {
         UserMapper userMapper = session.getMapper(UserMapper.class);
         //使用Mapper代理
         List<User> list = userMapper.findUsersByName("柳");
+        System.out.print(list);
+    }
+
+    @Test
+    public void testFindUserList() throws Exception {
+        SqlSession session = factory.openSession();
+        UserMapper userMapper = session.getMapper(UserMapper.class);
+
+        UserWrap userWrap = new UserWrap();
+        UserExtend userExtend = new UserExtend();
+        userExtend.setUsername("柳");
+        userWrap.setUserExtend(userExtend);
+
+        List<User> list = userMapper.findUserList(userWrap);
+        session.close();
+        System.out.print(list);
+    }
+
+    @Test
+    public void testFindUserCount() throws Exception {
+        SqlSession session = factory.openSession();
+        UserMapper userMapper = session.getMapper(UserMapper.class);
+
+        UserWrap userWrap = new UserWrap();
+        UserExtend userExtend = new UserExtend();
+        userExtend.setUsername("柳");
+        userWrap.setUserExtend(userExtend);
+
+        int count = userMapper.findUserCount(userWrap);
+        session.close();
+        System.out.print(count);
+    }
+
+    @Test
+    public void testFindUserResultMap() throws Exception {
+        SqlSession session = factory.openSession();
+        UserMapper userMapper = session.getMapper(UserMapper.class);
+
+        UserWrap userWrap = new UserWrap();
+        UserExtend userExtend = new UserExtend();
+        userExtend.setUsername("柳");
+        userWrap.setUserExtend(userExtend);
+
+        List<User> list = userMapper.findUserResultMap(userWrap);
+        session.close();
         System.out.print(list);
     }
 }

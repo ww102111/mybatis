@@ -11,12 +11,25 @@
 -->
 <mapper namespace="com.hooau.mybatis.mapper.UserMapper">
 
+    <!--type: 最终映射的实体类型-->
+    <resultMap id="userListResultMap" type="user">
+        <!--主键映射-->
+        <id column="id_" property="id"/>
+        <!--普通列映射-->
+        <result column="username_" property="username"/>
+        <result column="address_" property="address"/>
+    </resultMap>
+    
     <select id="findUserById" parameterType="int" resultType="user">
       SELECT * FROM USER WHERE id=#{id}
     </select>
 
     <select id="findUsersByName" parameterType="String" resultType="user">
         SELECT * FROM USER WHERE USERNAME LIKE '%${value}%'
+    </select>
+
+    <select id="findUserList" parameterType="userWrap" resultType="user">
+        SELECT * FROM USER WHERE USERNAME LIKE '%${userExtend.name}%'
     </select>
 
     <insert id="insertUser" parameterType="user">
@@ -40,5 +53,13 @@
     <update id="updateUser" parameterType="user">
         UPDATE USER SET username=#{username}, birthday=#{birthday}, sex=#{sex}, address=#{address} WHERE id=#{id}
     </update>
+
+    <select id="findUserCount" parameterType="userWrap" resultType="int">
+        SELECT COUNT(id) FROM USER WHERE USERNAME LIKE '%${userExtend.name}%'
+    </select>
+    
+    <select id="findUserResultMap" parameterType="userWrap" resultMap="userListResultMap">
+        SELECT id id_, username username_, address address_ FROM USER WHERE username LIKE '%${userExtend.name}%'
+    </select>
 </mapper>
 

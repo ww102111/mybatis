@@ -68,4 +68,19 @@
     </dependency>
 
   </dependencies>
+
+  <build>
+    <resources>
+      <!--idea中，src下的资源文件不会随编译文件copy到class目录-->
+      <resource>
+        <directory>src/main/java</directory>
+        <includes>
+          <include>**/*.properties</include>
+          <include>**/*.xml</include>
+        </includes>
+        <filtering>false</filtering>
+      </resource>
+    </resources>
+  </build>
+
 </project>
