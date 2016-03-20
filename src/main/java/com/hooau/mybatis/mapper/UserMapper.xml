@@ -18,8 +18,22 @@
         <!--普通列映射-->
         <result column="username_" property="username"/>
         <result column="address_" property="address"/>
+        <result column="sex_" property="sex"/>
     </resultMap>
-    
+
+    <!-- sql片断，相当于封装查询条件 -->
+    <sql id="user_query">
+        <if test="userExtend != null">
+            <if test="userExtend.username != null and userExtend.username != ''">
+                AND username LIKE '%${userExtend.username}%'
+            </if>
+            <if test="userExtend.sex != null and userExtend.sex != ''">
+                AND sex = #{userExtend.sex}
+            </if>
+        </if>
+    </sql>
+
+
     <select id="findUserById" parameterType="int" resultType="user">
       SELECT * FROM USER WHERE id=#{id}
     </select>
@@ -29,7 +43,7 @@
     </select>
 
     <select id="findUserList" parameterType="userWrap" resultType="user">
-        SELECT * FROM USER WHERE USERNAME LIKE '%${userExtend.name}%'
+        SELECT * FROM USER WHERE USERNAME LIKE '%${userExtend.username}%'
     </select>
 
     <insert id="insertUser" parameterType="user">
@@ -55,11 +69,23 @@
     </update>
 
     <select id="findUserCount" parameterType="userWrap" resultType="int">
-        SELECT COUNT(id) FROM USER WHERE USERNAME LIKE '%${userExtend.name}%'
+        SELECT COUNT(id) FROM USER WHERE USERNAME LIKE '%${userExtend.username}%'
     </select>
     
     <select id="findUserResultMap" parameterType="userWrap" resultMap="userListResultMap">
-        SELECT id id_, username username_, address address_ FROM USER WHERE username LIKE '%${userExtend.name}%'
+        SELECT id id_, username username_, address address_ FROM USER
+        <!--WHERE username LIKE '%${userExtend.username}%'-->
+        <where>
+            <include refid="user_query"/>
+        </where>
+    </select>
+    
+    <select id="findUserSqlPart" parameterType="userWrap" resultType="user">
+        SELECT * FROM user
+        <where>
+          <!-- 如果引用别的命名空间的sql片断，refid=namespace.sqlid -->
+          <include refid="user_query"/>
+        </where>
     </select>
 </mapper>
 

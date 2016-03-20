@@ -110,4 +110,20 @@ public class TestMapper {
         session.close();
         System.out.print(list);
     }
+
+    @Test
+    public void testFindUserSqlPart() throws Exception {
+        SqlSession session = factory.openSession();
+        UserMapper userMapper = session.getMapper(UserMapper.class);
+
+        UserWrap userWrap = new UserWrap();
+        UserExtend userExtend = new UserExtend();
+        userExtend.setUsername("柳");
+        userExtend.setSex("1");
+        userWrap.setUserExtend(userExtend);
+
+        List<User> userList = userMapper.findUserSqlPart(userWrap);
+        session.close();
+        System.out.print(userList);
+    }
 }

@@ -50,4 +50,12 @@ public interface UserMapper {
      * @throws Exception
      */
     List<User> findUserResultMap(UserWrap userWrap) throws Exception;
+
+    /**
+     * 使用sql片段查询用户列表
+     * @param userWrap
+     * @return
+     * @throws Exception
+     */
+    List<User> findUserSqlPart(UserWrap userWrap) throws Exception;
 }
