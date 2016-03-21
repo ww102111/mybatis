@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,7 +28,7 @@ public class TestMapper {
     private SqlSessionFactory factory = null;
 
     /**
-     * 在所有测试方法前执行，创建SqlSessionFactory
+     * 在所有测试方法前执行，创建SqlSessionFactory，为单例
      */
     @Before
     public void initialSessionFactory() {
@@ -121,6 +122,27 @@ public class TestMapper {
         userExtend.setUsername("柳");
         userExtend.setSex("1");
         userWrap.setUserExtend(userExtend);
+
+        List<User> userList = userMapper.findUserSqlPart(userWrap);
+        session.close();
+        System.out.print(userList);
+    }
+
+    @Test
+    public void testFindUserByIds() throws Exception {
+        SqlSession session = factory.openSession();
+        UserMapper userMapper = session.getMapper(UserMapper.class);
+
+        UserWrap userWrap = new UserWrap();
+        UserExtend userExtend = new UserExtend();
+        userExtend.setUsername("柳");
+        userWrap.setUserExtend(userExtend);
+
+        List<Integer> ids = new ArrayList<Integer>();
+        ids.add(1);
+        ids.add(10);
+        ids.add(28);
+        userWrap.setIds(ids);
 
         List<User> userList = userMapper.findUserSqlPart(userWrap);
         session.close();

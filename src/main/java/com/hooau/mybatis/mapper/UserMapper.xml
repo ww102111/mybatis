@@ -30,6 +30,20 @@
             <if test="userExtend.sex != null and userExtend.sex != ''">
                 AND sex = #{userExtend.sex}
             </if>
+
+            <!--使用foreach
+                SELECT * FROM USER WHERE username LIKE '%柳%' AND id IN (1, 10, 28)
+            -->
+            <!--<foreach collection="ids" open=" AND id IN (" close=")" item="id" separator=",">-->
+                <!--#{id}-->
+            <!--</foreach>-->
+
+            <!--
+                SELECT * FROM USER WHERE username LIKE '%柳%' AND (id=1 OR id=10 OR id=28)
+            -->
+            <foreach collection="ids" open=" AND (" close=")" item="id" separator="OR">
+                id=#{id}
+            </foreach>
         </if>
     </sql>
 
@@ -85,6 +99,14 @@
         <where>
           <!-- 如果引用别的命名空间的sql片断，refid=namespace.sqlid -->
           <include refid="user_query"/>
+        </where>
+    </select>
+
+    <select id="findUserByIds" parameterType="userWrap" resultType="user">
+        SELECT * FROM user
+        <where>
+            <!--如果引用别的命名空间的sql片断，refid=namespace.sqlid-->
+            <include refid="user_query"/>
         </where>
     </select>
 </mapper>

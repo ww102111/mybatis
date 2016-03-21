@@ -58,4 +58,12 @@ public interface UserMapper {
      * @throws Exception
      */
     List<User> findUserSqlPart(UserWrap userWrap) throws Exception;
+
+    /**
+     * 使用foreach根据ids同时查询多个用户
+     * @param userWrap
+     * @return
+     * @throws Exception
+     */
+    List<User> findUserByIds(UserWrap userWrap) throws Exception;
 }
