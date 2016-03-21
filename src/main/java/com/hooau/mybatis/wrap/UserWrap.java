@@ -13,9 +13,9 @@ import java.util.List;
  */
 public class UserWrap {
 
-    private User user;
-    private UserExtend userExtend;
-    private List<Integer> ids;
+    private User user;              //用户
+    private UserExtend userExtend;  //用户扩展对象
+    private List<Integer> ids;      //多个id
 
     public List<Integer> getIds() {
         return ids;
