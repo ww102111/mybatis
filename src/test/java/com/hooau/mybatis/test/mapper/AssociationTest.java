@@ -1,6 +1,6 @@
 package com.hooau.mybatis.test.mapper;
 
-import com.hooau.mybatis.Base.BaseTest;
+import com.hooau.mybatis.base.BaseTest;
 import com.hooau.mybatis.extend.OrderExtend;
 import com.hooau.mybatis.mapper.OrderMapper;
 import org.apache.ibatis.session.SqlSession;
