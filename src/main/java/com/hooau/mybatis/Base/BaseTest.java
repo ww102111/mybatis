@@ -3,8 +3,6 @@ package com.hooau.mybatis.base;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,22 +13,22 @@ import java.io.InputStream;
  * author: hooau
  * date: 2016/3/22
  */
-public class BaseTest{
+public abstract class BaseTest<T>{
 
-    protected Logger logger = LoggerFactory.getLogger(this.getClass());
+    //protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    protected SqlSessionFactory factory = getFactory();
+    protected static SqlSessionFactory factory = getFactory();
 
-    private SqlSessionFactory getFactory() {
+    private static SqlSessionFactory getFactory() {
         if(factory == null) {
             InputStream inputStream;
             try {
                 inputStream = Resources.getResourceAsStream("SqlMapConfig.xml");
                 factory = new SqlSessionFactoryBuilder().build(inputStream);
             } catch (IOException e) {
-                logger.debug("流读取异常：" + e.getMessage());
+                //logger.debug("流读取异常：" + e.getMessage());
             } catch (Exception e) {
-                logger.debug("未知异常：" + e.getMessage());
+                //logger.debug("未知异常：" + e.getMessage());
             }
         }
         return factory;
