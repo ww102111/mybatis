@@ -21,9 +21,9 @@ import java.util.List;
 /**
  *
  */
-public class TestMapper {
+public class MapperTest {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(TestMapper.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MapperTest.class);
 
     private SqlSessionFactory factory = null;
 

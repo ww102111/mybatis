@@ -1,0 +1,21 @@
+package com.hooau.mybatis.mapper;
+
+import com.hooau.mybatis.extend.OrderExtend;
+
+import java.util.List;
+
+/**
+ * <p>订单mapper</P>
+ * Created with IDEA
+ * author: hooau
+ * date: 2016/3/22
+ */
+public interface OrderMapper {
+
+    /**
+     * 查询订单及相关用户的信息
+     * @return
+     * @throws Exception
+     */
+    List<OrderExtend> findOrderAndUser() throws Exception;
+}

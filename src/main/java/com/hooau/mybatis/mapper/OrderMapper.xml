@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--mapper代理开发
+    namespace: 指定为mapper接口的权限命名
+    statement: id为mapper接口的方法名
+               parameterType为方法参数类型
+               resultType为方法的返回值类型
+-->
+<mapper namespace="com.hooau.mybatis.mapper.OrderMapper">
+
+    <select id="findOrderAndUser" resultType="orderExtend">
+        SELECT
+          o.*,
+          u.`username`,
+          u.`sex`
+        FROM
+          orders o,
+          USER u
+        WHERE o.`user_id` = u.`id`
+    </select>
+</mapper>
+

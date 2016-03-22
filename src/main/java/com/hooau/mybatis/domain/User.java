@@ -3,15 +3,18 @@ package com.hooau.mybatis.domain;
 import java.util.Date;
 
 /**
- * Created by hooau on 2016/3/19.
+ * <p>实体：用户</P>
+ * Created with IDEA
+ * author: hooau
+ * date: 2016/3/20
  */
 public class User {
 
-    private int id;             //id
-    private String username;    //用户名
-    private String sex;         //性别
-    private Date birthday;      //生日
-    private String address;     //地址
+    protected Integer id;             //id
+    protected String username;    //用户名
+    protected String sex;         //性别
+    protected Date birthday;      //生日
+    protected String address;     //地址
 
     public int getId() {
         return id;

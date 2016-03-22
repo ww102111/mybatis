@@ -14,6 +14,7 @@
         <!--批量别名设置，默认为类名首字母小写（大写也行）-->
         <package name="com.hooau.mybatis.domain" />
         <package name="com.hooau.mybatis.wrap" />
+        <package name="com.hooau.mybatis.extend" />
     </typeAliases>
     
     <environments default="development">
