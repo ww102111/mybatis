@@ -6,6 +6,11 @@
     <!--数据库连接信息-->
     <properties resource="db/db.properties" />
 
+    <!--全局设置信息-->
+    <settings>
+        <setting name="cacheEnabled" value="true"/>
+    </settings>
+
     <!--定义别名-->
     <typeAliases>
         <!--单个别名定义-->

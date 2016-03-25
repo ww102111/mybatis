@@ -1,6 +1,7 @@
 package com.hooau.mybatis.test.mapper;
 
 import com.hooau.mybatis.base.BaseTest;
+import com.hooau.mybatis.domain.Orders;
 import com.hooau.mybatis.extend.OrderExtend;
 import com.hooau.mybatis.mapper.OrderMapper;
 import org.apache.ibatis.session.SqlSession;
@@ -27,5 +28,19 @@ public class AssociationTest extends BaseTest {
             //logger.debug("测试查询订单异常" + e.getMessage());
         }
         System.out.println(orderExtends);
+    }
+
+    @Test
+    public void testFindOrderUserResultMap() {
+        SqlSession session = factory.openSession();
+        OrderMapper ordersMapper = session.getMapper(OrderMapper.class);
+        List<Orders> ordersList = null;
+        try {
+            ordersList = ordersMapper.findOrderUserResultMap();
+        } catch (Exception e) {
+            e.printStackTrace();
+            //logger.debug("测试查询订单异常" + e.getMessage());
+        }
+        System.out.println(ordersList);
     }
 }

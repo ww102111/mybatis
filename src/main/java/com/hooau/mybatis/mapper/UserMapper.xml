@@ -11,6 +11,9 @@
 -->
 <mapper namespace="com.hooau.mybatis.mapper.UserMapper">
 
+    <!--开启二级缓存-->
+    <cache/>
+
     <!--type: 最终映射的实体类型-->
     <resultMap id="userListResultMap" type="user">
         <!--主键映射-->

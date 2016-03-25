@@ -1,5 +1,6 @@
 package com.hooau.mybatis.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -8,13 +9,13 @@ import java.util.Date;
  * author: hooau
  * date: 2016/3/20
  */
-public class User {
+public class User implements Serializable{
 
-    protected Integer id;             //id
-    protected String username;    //用户名
-    protected String sex;         //性别
-    protected Date birthday;      //生日
-    protected String address;     //地址
+    protected Integer id;       //id
+    protected String username;  //用户名
+    protected String sex;       //性别
+    protected Date birthday;    //生日
+    protected String address;   //地址
 
     public int getId() {
         return id;

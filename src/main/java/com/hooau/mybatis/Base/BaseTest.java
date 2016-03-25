@@ -13,7 +13,7 @@ import java.io.InputStream;
  * author: hooau
  * date: 2016/3/22
  */
-public abstract class BaseTest<T>{
+public abstract class BaseTest {
 
     //protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
